@@ -1,0 +1,18 @@
+{
+  "name": "arduino-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "reset": "firmata-party uno --debug"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@serialport/parser-delimiter": "^10.5.0",
+    "firmata-party": "^2.0.1",
+    "johnny-five": "^2.1.0",
+    "serialport": "^10.5.0"
+  }
+}
