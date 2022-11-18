@@ -29,7 +29,7 @@ $ npm run start
 ## Autor
 
 - 🧑🏻‍💻 Samir Hadechni
-- 🧑🏻‍💻 Hector Mendez
+- 🧑🏻‍💻 Hector Mendez G
 
 
 
