@@ -1,17 +1,24 @@
 version: '3.1'
 
 services:
-  db:
+  Db:
+    container_name: mysql
     image: mysql:5.7
-    # volumes:
-    #   - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
-    # command: --init-file /docker-entrypoint-initdb.d/init.sql
-    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./mysql/db/data:/var/lib/mysql
     ports:
-      - "3312:3306"
+      - 3306:3306
     environment:
-      MYSQL_DATABASE: db
-      MYSQL_ROOT_USER: samir
-      MYSQL_USER: samir
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: Data
+      MYSQL_ROOT_USER: root
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
