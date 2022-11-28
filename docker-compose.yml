@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+  Db:
+    image: mysql:5.7
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: --init-file /docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: datos
+      MYSQL_ROOT_USER: samir
+      MYSQL_USER: samir
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: secret
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
