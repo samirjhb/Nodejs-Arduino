@@ -1,6 +1,24 @@
 version: '3.1'
 
 services:
+  api-gps:
+    container_name: api-gps
+    build:
+      context: ./
+    restart: always
+    ports:
+      - 3002:3000
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=3306
+      - DB_USER=samir
+      - DB_PASS=secret
+      - DB_DATABASE=datos
+      - DB_GET=http://localhost:3000/
+    depends_on:
+      - Db
+    links:
+      - Db
   Db:
     image: mysql:5.7
     volumes:
