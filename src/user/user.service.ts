@@ -1,29 +1,26 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { CreateUserDto } from './dto/create-user.dto';
+import { InjectModel } from '@nestjs/sequelize';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User)
-    private UserRepository: Repository<User>,
+    @InjectModel(User)
+    private userModel: typeof User,
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
-    const CreacionUser = await this.UserRepository.create(createUserDto);
-    return this.UserRepository.save(CreacionUser);
+  async create(createUserDto) {
+    const CreacionUser = await this.userModel.create(createUserDto);
+    return console.log(CreacionUser);
   }
 
-  findAll() {
-    return this.UserRepository.find();
+  async findAll(): Promise<User[]> {
+    return this.userModel.findAll();
   }
 
   async findOne(userID: string) {
-    const user = await this.UserRepository.findOne({
+    const user = await this.userModel.findOne({
       where: {
         userID,
       },

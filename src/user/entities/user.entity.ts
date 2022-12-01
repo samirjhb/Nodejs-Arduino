@@ -1,21 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
-@Entity({ name: 'User' })
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+import { Table, Model, Column } from 'sequelize-typescript';
+@Table
+export class User extends Model {
   @Column({ unique: true })
   userID: string;
 
-  @Column()
+  @Column
   userNombre: string;
 
-  @Column({
-    type: 'timestamp',
-    default: () => {
-      'CURRENT_TIMESTAMP';
-    },
-  })
+  @Column
   createdAt: Date;
 }

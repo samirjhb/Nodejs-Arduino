@@ -8,7 +8,7 @@ COPY tsconfig*.json ./
 COPY package*.json ./
 COPY nest-cli*.json ./
 
-RUN npm ci 
+RUN npm ci --force
 
 COPY src/ src/
 

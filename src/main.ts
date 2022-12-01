@@ -58,7 +58,7 @@ async function bootstrap() {
     axios(configuracion)
       .then(function (response) {
         if (response.data.userID == user) {
-          console.log(' user registrado');
+          console.log(' user registrado', user);
           // volver nueva fecha y hora
           const Tiempo = new Date();
           //Contador con la hora actual
@@ -86,7 +86,7 @@ async function bootstrap() {
             html: `<b>User Registrado con el ID Arranco Camion "${user}"  y el nombre "${response.data.userNombre}" a la hora "${Tiempo}"  </b>`, // html body
           });
         } else {
-          console.log(' user no registrado');
+          console.log(' user no registrado', user);
           transporter.sendMail({
             from: '"PROBANDO CV" <prueba@example.com>',
             to: 'samirmac98@gmail.com, h.mendez@grupofirma.cl',
@@ -105,6 +105,6 @@ async function bootstrap() {
     console.log('Error: ', err.message);
   });
 
-  await app.listen(process.env.PORT);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
